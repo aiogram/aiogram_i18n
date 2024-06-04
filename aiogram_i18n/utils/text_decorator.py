@@ -41,6 +41,9 @@ class Null(TextD):
     def quote(self, value: str) -> str:
         return value
 
+    def blockquote(self, value: str) -> str:
+        return value
+
     def custom_emoji(self, value: str, custom_emoji_id: str) -> str:
         return value
 
