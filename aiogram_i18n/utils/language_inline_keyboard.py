@@ -42,18 +42,18 @@ class LanguageInlineMarkup:
         self.param = param
         self.filter = LanguageCallbackFilter(keyboard=self)
         self.keyboards: Dict[str, INLINE_MARKUP] = {}
-        self.keyboard: Optional[INLINE_MARKUP] = keyboard or list()  # noqa: C408
+        self.keyboard: Optional[INLINE_MARKUP] = keyboard or []
 
     def reply_markup(self, locale: Optional[str] = None) -> InlineKeyboardMarkup:
         if locale is None:
             locale = I18nContext.get_current(False).locale
         return InlineKeyboardMarkup(
-            inline_keyboard=self.keyboards.get(locale) or list()  # noqa: C408
+            inline_keyboard=self.keyboards.get(locale) or []
         )
 
     async def startup(self, i18n: I18nContext) -> None:
         if self.keyboards:
-            return
+            self.keyboards.clear()
         for locale in i18n.core.available_locales:
             button = InlineKeyboardButton(
                 text=i18n.core.get(self.key, locale),
