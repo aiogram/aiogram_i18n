@@ -7,18 +7,21 @@ if TYPE_CHECKING:
     from .fluent_compile_core import FluentCompileCore
     from .fluent_runtime_core import FluentRuntimeCore
     from .gnu_text_core import GNUTextCore
+    from .jinja2_core import Jinja2Core
 
 
 __cores__ = {
     "GNUTextCore": ".gnu_text_core",
     "FluentRuntimeCore": ".fluent_runtime_core",
     "FluentCompileCore": ".fluent_compile_core",
+    "Jinja2Core": ".jinja2_core",
 }
 
 __all__ = (
     "GNUTextCore",
     "FluentRuntimeCore",
     "FluentCompileCore",
+    "Jinja2Core",
     "BaseCore",
 )
 

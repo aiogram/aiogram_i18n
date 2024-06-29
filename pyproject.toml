@@ -55,6 +55,9 @@ compiler = [
 runtime = [
     "fluent.runtime~=0.4.0",
 ]
+jinja2 = [
+    "jinja2~=3.1.4",
+]
 test = [
     "pytest~=7.4.0",
     "pytest-cov~=4.0.0",
@@ -85,6 +88,7 @@ post-install = [
 features = [
     "compiler",
     "runtime",
+    "jinja2",
     "dev",
     "test",
     "docs",
