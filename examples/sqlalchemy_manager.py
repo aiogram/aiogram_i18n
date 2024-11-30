@@ -4,6 +4,7 @@ from os import environ
 from typing import Callable, Dict, Any, Awaitable
 
 from aiogram import BaseMiddleware, Dispatcher, Bot
+from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.types import TelegramObject, User
 from sqlalchemy import BigInteger, String
@@ -104,7 +105,10 @@ class UserMiddleware(BaseMiddleware):
 async def main():
     logging.basicConfig(level=logging.INFO)
     dp = Dispatcher()
-    bot = Bot(token=environ["BOT_TOKEN"], parse_mode=ParseMode.HTML)
+    bot = Bot(
+        token=environ["BOT_TOKEN"],
+        default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+    )
 
     mw = I18nMiddleware(
         core=FluentRuntimeCore(

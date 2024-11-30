@@ -4,6 +4,7 @@ from logging import INFO, basicConfig
 from typing import Any
 
 from aiogram import Bot, Dispatcher, Router
+from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
 from aiogram.types import Message
@@ -37,7 +38,7 @@ async def cmd_help(message: Message) -> Any:
 
 async def main() -> None:
     basicConfig(level=INFO)
-    bot = Bot("42:ABC", parse_mode=ParseMode.HTML)
+    bot = Bot("42:ABC", default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     i18n_middleware = I18nMiddleware(core=FluentRuntimeCore(path="locales/{locale}/LC_MESSAGES"))
 
     dp = Dispatcher()

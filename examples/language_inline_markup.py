@@ -3,6 +3,7 @@ from asyncio import run
 from os import environ
 
 from aiogram import Router, Dispatcher, Bot, F
+from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.filters import Command, CommandStart
 from aiogram.types import CallbackQuery, Message
@@ -50,7 +51,10 @@ async def cmd_lang(message: Message, i18n: I18nContext):
 async def main():
     logging.basicConfig(level=logging.INFO)
     dp = Dispatcher()
-    bot = Bot(token=environ["BOT_TOKEN"], parse_mode=ParseMode.HTML)
+    bot = Bot(
+        token=environ["BOT_TOKEN"],
+        default=DefaultBotProperties(parse_mode=ParseMode.HTML),
+    )
     mw = I18nMiddleware(
         core=FluentRuntimeCore(
             path="locales/{locale}/LC_MESSAGES",
